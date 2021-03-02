@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Add Course to Courselist{% endblock %}
+
+{% block page_content %}
+<h1 class="display-4 text-center">Add Course to Courselist</h1>
+{{ wtf.quick_form(form) }}
+<div>
+<a href="/courselist" class="btn btn-outline-primary my-2 my-sm-0">View Courselist</a>
+<a href="/courseremove" class="btn btn-outline-primary my-2 my-sm-0">Remove a Course</a>
+</div> 
+ {% endblock %}

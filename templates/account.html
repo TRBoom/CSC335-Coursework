@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Account{% endblock %}
+
+{% block page_content %}
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="/change_password">Change password</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/change_email">Change email</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/change_class">Change class</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/delete_account">Delete account</a>
+    </li>
+</ul>
+<br>
+<h1 class="display-4 text-center">Manage Account</h1>
+    <img alt height="auto"
+    src="https://i.imgur.com/TblwCSK.jpg"
+    style="display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;">
+{% endblock %}

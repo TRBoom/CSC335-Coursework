@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_content %}
+<div class="text-center">
+<h1 class="display-4">Welcome to SCSU Wishlist!</h1>
+<br>
+<p>
+    Here is where you can track a list of current courses you are interested in taking.<br>
+    These courses, called <b>wishes</b> will appear in the <b>Wishlist</b> tab.<br>
+    Anytime a spot opens in the course, you will be notified via email.<br><br>
+
+    Additionally, you may track the courses you are currently enrolled in on your 
+    <b>Courselist</b><br> and get notified ahead of time if any of these courses 
+    are at risk of cancellation.<br>
+
+    To search for courses you want to add on your courselist or wishlist, 
+    go to <b>Lookup</b>
+</p>
+<br> 
+{% if current_user.is_anonymous %}
+<p>To begin, press <a href='/login'>Login</a>
+     or <a href='/signup'>Sign up</a> to create a new account.</p>
+{% endif %}
+</div>
+
+<img alt height="auto"
+src="https://i.imgur.com/TblwCSK.jpg"
+style="display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;">
+        
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}Sign Up{% endblock %}
+
+{% block page_content %}
+<h1 class="display-4 text-center">Sign up</h1>
+
+<form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+    <d1>
+        {{ wtf.form_field(form.name) }}
+        {{ wtf.form_field(form.studentID) }}
+        {{ wtf.form_field(form.year) }}
+        {{ wtf.form_field(form.user) }}
+        {{ wtf.form_field(form.passw) }}
+        {{ wtf.form_field(form.pass2) }}
+        {{ wtf.form_field(form.submit, class="btn btn-primary") }}
+    </d1>
+    </form>
+<hr>
+<a href="/login">Have an account? Log in here.</a>
+{% endblock %}

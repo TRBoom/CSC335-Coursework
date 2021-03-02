@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Add Course to Wish List{% endblock %}
+
+{% block page_content %}
+<h1 class="display-4 text-center">Your Course Wishlist</h1>
+<table class="table table-bordered table-hover w-75 mx-auto">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" class="text-center align-middle">Course Title</th>
+    <th scope="col" class="text-center align-middle">Subject</th>
+    <th scope="col" class="text-center align-middle">Course</th>
+    <th scope="col" class="text-center align-middle">Section</th>
+    <th scope="col" class="text-center align-middle">CRN</th>
+    <th scope="col" class="text-center align-middle">Enrolled</th>
+    <th scope="col" class="text-center align-middle">Total Seats</th>
+    <th scope="col" class="text-center align-middle">Wishlist Total</th>
+    <th scope="col" class="text-center align-middle">Copy CRN to Input</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for wish in wlist %}
+    <tr>
+        <td> {{ wish[0] }} </td>
+        <td> {{ wish[1] }} </td>
+        <td> {{ wish[2] }} </td>
+        <td> {{ wish[3] }} </td>
+        <td> {{ wish[4] }} </td>
+        <td class="text-right"> {{ wish[5] }} </td>
+        <td class="text-right"> {{ wish[6] }} </td>
+        <td class="text-right"> {{ wish[7] }} </td>
+        <td class="text-center">
+            <button class="copyCRN btn btn-outline-dark">Copy</button>
+        </td>	
+    </tr>
+  {% else %}
+      <td class="text-center" colspan="9">No Courses added yet</td>
+    </tbody>
+   {% endfor %}
+    </table>
+  <hr>
+  <div class="text-center">
+      <form action="" method="post" class="p-3 w-25 mx-auto" role="form">
+          {{ remForm.csrf_token() }}
+           <div>
+            {{ wtf.form_field(remForm.CRN) }}
+            {{ wtf.form_field(remForm.submit, class="btn btn-outline-primary") }}
+           </div>
+           {{ addForm.csrf_token() }}
+           <div>
+              {{ wtf.form_field(addForm.submit, class="btn btn-outline-primary my-2 my-sm-0") }}
+           </div>
+        </form>
+  </div>
+<script>
+  $(".copyCRN").click(function(){
+    $("#CRN").val($(this).closest("tr").find("td:eq(4)").html());
+  });
+</script>
+{% endblock %}

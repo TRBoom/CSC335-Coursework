@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Admin Area{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+        {% if current_user.is_authenticated %}
+        <div class="text-center">
+         <h1 class="display-4">Admin Area</h1>
+                 <ul>
+                 <li><a href="/create_user">Create User</a></li>
+                 <li><a href="/faculty">Wishlist Reports</a></li>
+                 </ul>
+        </div>
+         {% endif %}
+</div>
+{% endblock %}

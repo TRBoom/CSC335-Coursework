@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Add Courses to Courselist{% endblock %}
+
+{% block page_content %}
+<h1 class="display-4 text-center">Your Current Courselist</h1>
+<table class="table table-bordered table-hover w-75 mx-auto">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" class="text-center align-middle">Course Title</th>
+    <th scope="col" class="text-center align-middle">Subject</th>
+    <th scope="col" class="text-center align-middle">Course</th>
+    <th scope="col" class="text-center align-middle">Section</th>
+    <th scope="col" class="text-center align-middle">CRN</th>
+    <th scope="col" class="text-center align-middle">Enrolled</th>
+    <th scope="col" class="text-center align-middle">Total Seats</th>
+    <th scope="col" class="text-center align-middle">Wishlist Total</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for course in clist %}
+    <tr>
+        <td> {{ course[0] }} </td>
+        <td> {{ course[1] }} </td>
+        <td> {{ course[2] }} </td>
+        <td> {{ course[3] }} </td>
+        <td> {{ course[4] }} </td>
+        <td class="text-right"> {{ course[5] }} </td>
+        <td class="text-right"> {{ course[6] }} </td>
+    <td class="text-right"> {{ course[7] }} </td>
+    </tr>
+  {% else %}
+      <td class="text-center" colspan="8">No Courses added yet</td>
+    </tbody>
+   {% endfor %}
+    </table>
+  <hr>
+  <div class="text-center">
+    <div style="width: 25%;">
+        <form action="" method="post" class="form" role="form">
+            {{ remForm.csrf_token() }}
+             <d1>
+              {{ wtf.form_field(remForm.CRN) }}
+              {{ wtf.form_field(remForm.submit, class="btn btn-outline-primary my-2 my-sm-0") }}
+             </d1>
+            {{ addForm.csrf_token() }}
+            <d1>
+              {{ wtf.form_field(addForm.submit, class="btn btn-outline-primary my-2 my-sm-0") }}
+             </d1>
+          </form>
+            </div>
+  </div>
+  
+{% endblock %}

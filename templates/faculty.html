@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Facutly Class Lookup{% endblock %}
+
+{% block page_content %}
+<h1 class="display-4 text-center">Facutly Class Lookup</h1>
+<form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+     <d1>
+       {{ wtf.form_field(form.SUB) }}
+       {{ wtf.form_field(form.course) }}
+       {{ wtf.form_field(form.SEC) }}
+       {{ wtf.form_field(form.submit, class="btn btn-outline-primary my-2 my-sm-0") }}
+     </d1>
+</form>
+
+<table class="table table-bordered table-hover w-75 mx-auto">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col" class="text-center align-middle">Name</th>
+    <th scope="col" class="text-center align-middle">Email</th>
+    <th scope="col" class="text-center align-middle">Year</th>
+    <th scope="col" class="text-center align-middle">Student ID</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for wisher in wisher_list %}
+    <tr>
+        <td> {{ wisher[0] }} </td>
+        <td> {{ wisher[1] }} </td>
+        <td> {{ wisher[2] }} </td>
+        <td> {{ wisher[3] }} </td>
+    </tr>
+  {% else %}
+      <td class="text-center" colspan="8">No one wishes for this course</td>
+    </tbody>
+   {% endfor %}
+    </table>
+  <hr>
+  <div class="text-center">
+{% endblock %}

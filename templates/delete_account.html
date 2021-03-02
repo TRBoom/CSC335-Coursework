@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% block page_content %}
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" href="/change_password">Change password</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/change_email">Change email</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/change_class">Change class</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/delete_account">Delete account</a>
+    </li>
+</ul>
+<br>
+<div class="text-center">
+  <h1 class="display-4">Delete account</h1>
+  <p class="lead">Please verify your account info and press submit to delete.</p>
+</div>
+<form action="" method="post" class="p-3 w-75 mx-auto" role="form">
+    {{ form.csrf_token() }}
+     <div>
+       {{ wtf.form_field(form.password) }}
+       {{ wtf.form_field(form.submit, class="btn btn-primary") }}
+     </div>
+</form>
+<hr>
+<a href="/account">&#171;Back</a>
+{% endblock %}

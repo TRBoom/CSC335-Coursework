@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Look up a Course{% endblock %}
+
+{% block page_content %}
+<style>
+.my-custom-scrollbar {
+position: relative;
+max-height: 500px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+table thead tr th {
+position: sticky;
+top: 0px;
+}
+</style>
+
+<h1 class="display-4 text-center">Course Lookup</h1>
+<form action="" method="post" class="p-3 w-75 mx-auto" role="form">
+  {{ form.csrf_token() }}
+   <div>
+    {{ wtf.form_field(form.search_method) }}
+    <div id="CRNdiv">
+        {{ wtf.form_field(form.CRN) }}
+    </div>
+    <div id="SUBdiv">
+        {{ wtf.form_field(form.SUB) }}
+    </div>
+    <div id="CRSEdiv">
+        {{ wtf.form_field(form.CRSE) }}
+    </div>
+     {{ wtf.form_field(form.submit, class="btn btn-outline-primary") }}
+   </div>
+</form>
+<div class="table-wrapper-scroll-y my-custom-scrollbar w-100 mx-auto" style="border: 1px solid grey;">
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+  <tr>
+      <th scope="col" class="text-center align-middle">Course Title</th>
+      <th scope="col" class="text-center align-middle">Subject</th>
+      <th scope="col" class="text-center align-middle">Course</th>
+      <th scope="col" class="text-center align-middle">Section</th>
+      <th scope="col" class="text-center align-middle">CRN</th>
+      <th scope="col" class="text-center align-middle">Enrolled</th>
+      <th scope="col" class="text-center align-middle">Total Seats</th>
+      <th scope="col" class="text-center align-middle">Wishlist Total</th>
+      <th scope="col" class="text-center align-middle">Copy CRN to Input</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for course in clist %}
+    <tr>
+        <td> {{ course [0] }} </td>
+        <td> {{ course [1] }} </td>
+        <td> {{ course [2] }} </td>
+        <td> {{ course [3] }} </td>
+        <td> {{ course [4] }} </td>
+        <td class="text-right"> {{ course [5] }} </td>
+        <td class="text-right"> {{ course [6] }} </td>
+        <td class="text-right"> {{ course [7] }} </td>
+        <td class="text-center">
+            <button class="copyCRN btn btn-outline-dark">Copy</button>
+        </td>		
+    </tr>
+  {% else %}
+  <td class="text-center" colspan="9">Search for Courses</td>
+	</tbody>
+
+	{% endfor %}
+</table>
+</div>
+<hr>
+<div class="text-center">
+    <form action="" method="post" class="p-3 w-25 mx-auto" role="form">
+        {{ form.csrf_token() }}
+         <div>
+          {{ wtf.form_field(formAdd.course) }}
+          {{ wtf.form_field(formAdd.addcourse, class="btn btn-outline-primary") }}
+         </div>
+      </form>
+  </div>
+
+<script>
+  $(".copyCRN").click(function(){
+    $("#course").val($(this).closest("tr").find("td:eq(4)").html());
+  });
+  $("#search_method").change(function() {
+    if ($(this).val() == "CRN") {
+      $("#SUB").val("");
+      $("#CRSE").val("");
+      $("#CRNdiv").show();
+      $("#SUBdiv").hide();
+      $("#CRSEdiv").hide();
+    }
+    if ($(this).val() == "SUB") {
+      $("#CRN").val("");
+      $("#CRSE").val("");
+      $("#CRNdiv").hide();
+      $("#SUBdiv").show();
+      $("#CRSEdiv").hide();
+    }
+    if ($(this).val() == "CRSE") {
+      $("#SUB").val("");
+      $("#CRN").val("");
+      $("#CRNdiv").hide();
+      $("#SUBdiv").hide();
+      $("#CRSEdiv").show();
+    }
+  });
+  $("#search_method").trigger("change");
+</script>
+{% endblock %}
