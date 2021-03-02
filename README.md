@@ -1,5 +1,7 @@
 # aplus - SCSU Wishlist
+This is a course project from 2019. None of it is supported online anymore, but the code is still functional and can be deployed for testing via google cloud infrastructure. The original intent of the project was to create a course wish list or waiting list for students who wanted to get into full courses. The website was fully functional and was well recieved. My only issue with it is that it did not include enough data sanitation. 
 
+My role in the project was project leader, github coordinator, project design, and python programmer. I worked with 4 other people on this project, all of whom I would work with again. 
 # Instructions for testing 
 
 http://34.66.96.51:8080/index
